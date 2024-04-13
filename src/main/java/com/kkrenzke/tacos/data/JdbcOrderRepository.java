@@ -20,10 +20,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Repository
-public class JdbcOrderRepository implements OrderRepository {
+public class JdbcOrderRepository {
   private final JdbcOperations jdbcOperations;
 
-  @Override
   @Transactional
   public TacoOrder save(TacoOrder order) {
     PreparedStatementCreatorFactory factory = new PreparedStatementCreatorFactory(
@@ -76,7 +75,7 @@ public class JdbcOrderRepository implements OrderRepository {
     int key = 0;
     for (Ingredient ref : ingredientRefs) {
       jdbcOperations.update("INSERT INTO ingredients_ref (ingredient, taco, taco_key) VALUES (?, ?, ?)",
-          ref.id(), tacoId, key++);
+          ref.getId(), tacoId, key++);
     }
   }
 }

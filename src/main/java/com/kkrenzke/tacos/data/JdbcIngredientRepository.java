@@ -13,26 +13,23 @@ import com.kkrenzke.tacos.Ingredient;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-@Repository
-public class JdbcIngredientRepository implements IngredientRepository {
+@Repository("jdbcIngredientRepository")
+public class JdbcIngredientRepository {
   private JdbcTemplate jdbcTemplate;
 
-  @Override
   public List<Ingredient> findAll() {
     return jdbcTemplate.query("SELECT id, name, type FROM ingredient", this::mapRowToIngredient);
   }
 
-  @Override
   public Optional<Ingredient> findById(String id) {
     List<Ingredient> results = jdbcTemplate.query("SELECT id, name, type FROM ingredient WHERE id=?",
         this::mapRowToIngredient, id);
     return results.size() == 0 ? Optional.empty() : Optional.of(results.get(0));
   }
 
-  @Override
   public Ingredient save(Ingredient ingredient) {
-    jdbcTemplate.update("INSERT INTO ingredient (id, name, type) VALUES (?, ?, ?)", ingredient.id(), ingredient.name(),
-        ingredient.type().toString());
+    jdbcTemplate.update("INSERT INTO ingredient (id, name, type) VALUES (?, ?, ?)", ingredient.getId(),
+        ingredient.getName(), ingredient.getType().toString());
     return ingredient;
   }
 
