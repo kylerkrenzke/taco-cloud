@@ -4,5 +4,7 @@ spring:
   datasource:
     generate-unique-name: false
     name: tacocloud
+  jpa:
+    open-in-view: true
   thymeleaf:
     cache: false

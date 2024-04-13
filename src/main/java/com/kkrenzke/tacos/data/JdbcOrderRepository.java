@@ -19,7 +19,7 @@ import com.kkrenzke.tacos.TacoOrder;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Repository
+@Repository("jdbcOrderRepository")
 public class JdbcOrderRepository {
   private final JdbcOperations jdbcOperations;
 
