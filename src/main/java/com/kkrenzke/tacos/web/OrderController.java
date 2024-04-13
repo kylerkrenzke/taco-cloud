@@ -9,15 +9,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.kkrenzke.tacos.TacoOrder;
+import com.kkrenzke.tacos.data.OrderRepository;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@RequiredArgsConstructor
 @Slf4j
 @Controller
 @RequestMapping("/orders")
 @SessionAttributes("tacoOrder")
 public class OrderController {
+  private final OrderRepository orderRepository;
+
   @GetMapping("/current")
   public String orderForm() {
     return "order-form";
@@ -30,6 +35,7 @@ public class OrderController {
       log.info("Order contains errors");
       return "order-form";
     }
+    orderRepository.save(order);
     status.setComplete();
     return "redirect:/";
   }
