@@ -1,17 +1,15 @@
 package com.kkrenzke.tacos.security;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+import com.kkrenzke.tacos.TacoCloudUser;
+import com.kkrenzke.tacos.data.TacoCloudUserRepository;
 
 @Configuration
 public class SecurityConfig {
@@ -21,12 +19,26 @@ public class SecurityConfig {
   }
 
   @Bean
-  UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-    List<UserDetails> userDetails = new ArrayList<>();
-    userDetails
-        .add(new User("buzz", passwordEncoder.encode("password"), List.of(new SimpleGrantedAuthority("ROLE_USER"))));
-    userDetails
-        .add(new User("woody", passwordEncoder.encode("password"), List.of(new SimpleGrantedAuthority("ROLE_USER"))));
-    return new InMemoryUserDetailsManager(userDetails);
+  UserDetailsService userDetailsService(TacoCloudUserRepository userRepository) {
+    return username -> {
+      TacoCloudUser user = userRepository.findByUsername(username);
+      if (user != null) {
+        return user;
+      }
+
+      throw new UsernameNotFoundException("User " + username + " not found");
+    };
+  }
+
+  @Bean
+  SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    return httpSecurity
+        .authorizeRequests()
+        .requestMatchers("/design", "/orders").hasRole("USER")
+        .requestMatchers("/", "/**").permitAll()
+        .and()
+        .formLogin().loginPage("/login")
+        .and()
+        .build();
   }
 }
