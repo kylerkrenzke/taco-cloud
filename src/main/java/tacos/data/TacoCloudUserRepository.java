@@ -1,8 +1,8 @@
-package com.kkrenzke.tacos.data;
+package tacos.data;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.kkrenzke.tacos.TacoCloudUser;
+import tacos.TacoCloudUser;
 
 public interface TacoCloudUserRepository extends CrudRepository<TacoCloudUser, Long> {
   TacoCloudUser findByUsername(String username);

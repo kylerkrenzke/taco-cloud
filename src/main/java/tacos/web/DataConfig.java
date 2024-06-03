@@ -1,12 +1,12 @@
-package com.kkrenzke.tacos.web;
+package tacos.web;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.kkrenzke.tacos.Ingredient;
-import com.kkrenzke.tacos.Ingredient.Type;
-import com.kkrenzke.tacos.data.IngredientRepository;
+import tacos.Ingredient;
+import tacos.Ingredient.Type;
+import tacos.data.IngredientRepository;
 
 @Configuration
 public class DataConfig {

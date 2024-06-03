@@ -1,4 +1,4 @@
-package com.kkrenzke.tacos;
+package tacos;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

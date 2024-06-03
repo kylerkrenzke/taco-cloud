@@ -1,8 +1,8 @@
-package com.kkrenzke.tacos.data;
+package tacos.data;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.kkrenzke.tacos.TacoOrder;
+import tacos.TacoOrder;
 
 public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
 }

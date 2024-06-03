@@ -1,10 +1,9 @@
-package com.kkrenzke.tacos.security;
+package tacos.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.kkrenzke.tacos.TacoCloudUser;
-
 import lombok.Data;
+import tacos.TacoCloudUser;
 
 @Data
 public class Registration {

@@ -1,14 +1,13 @@
-package com.kkrenzke.tacos.web;
+package tacos.web;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import com.kkrenzke.tacos.Ingredient;
-import com.kkrenzke.tacos.data.IngredientRepository;
-
 import lombok.RequiredArgsConstructor;
+import tacos.Ingredient;
+import tacos.data.IngredientRepository;
 
 @RequiredArgsConstructor
 @Component

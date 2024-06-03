@@ -1,4 +1,4 @@
-package com.kkrenzke.tacos;
+package tacos;
 
 import java.util.Collection;
 import java.util.List;

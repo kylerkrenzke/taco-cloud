@@ -1,4 +1,4 @@
-package com.kkrenzke.tacos.web;
+package tacos.web;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kkrenzke.tacos.Ingredient;
-import com.kkrenzke.tacos.Taco;
-import com.kkrenzke.tacos.TacoOrder;
-import com.kkrenzke.tacos.Ingredient.Type;
-import com.kkrenzke.tacos.data.IngredientRepository;
-
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import tacos.Ingredient;
+import tacos.Taco;
+import tacos.TacoOrder;
+import tacos.Ingredient.Type;
+import tacos.data.IngredientRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 

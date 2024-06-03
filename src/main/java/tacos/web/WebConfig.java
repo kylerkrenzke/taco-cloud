@@ -1,4 +1,4 @@
-package com.kkrenzke.tacos.web;
+package tacos.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
